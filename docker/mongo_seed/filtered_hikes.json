@@ -1,8 +1,9 @@
-{
-    "type": "FeatureCollection",
-    "features": [
-        {
-            "id": "france_hiking_foot_routes_line.9903858",
+[
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.9903858",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     573755.43877691,
@@ -820,7 +821,9 @@
                     573747.73546815,
                     5387781.38776012
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "La randonnée des amis",
             "description": "« La randonnée des Amis » vous fera découvrir la petite Camargue berroise. Vous traverserez des lieux parfois sauvages, dans une nature calme et reposante avec de belles vues sur les environs avant de longer l’étang et de remonter la rive de l’Arc.",
             "distance": "8.8",
@@ -830,9 +833,13 @@
             "osmc-symbol": "yellow::yellow_bar",
             "website": "https://www.myprovence.fr/circuits/randonnees/berre-l-etang/80680-berre-l-etang-la-randonnee-des-amis",
             "operator": "Département des Bouches-du-Rhône"
-        },
-        {
-            "id": "france_hiking_foot_routes_line.16892293",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.16892293",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     798790.14938872,
@@ -1674,7 +1681,9 @@
                     798790.14938872,
                     6075019.67865135
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "Circuit \"Les Cigognes\" 5 Km",
             "description": "Parcours permanents FFSP Départ et arrivée Salon de Thé Schruoffeneger 13 rue Poincarré 68700 Cernay",
             "distance": "6",
@@ -1684,9 +1693,13 @@
             "osmc-symbol": "blue:blue::IVV:white",
             "website": "https://www.ffsp.fr/parcours-permanents/Circuit-Les-Cigognes.html",
             "operator": "Fédération Francaise des Sports Populaires"
-        },
-        {
-            "id": "france_hiking_foot_routes_line.15820489",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.15820489",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     886237.13085358,
@@ -1920,7 +1933,9 @@
                     885684.80806806,
                     6283705.18096229
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "Pfälzer Mandelpfad - Etappe 7",
             "description": "7. Etappe Pfälzer Mandelpfad: Bad Bergzabern - Schweigen-Rechtenbach",
             "distance": "10.2",
@@ -1930,9 +1945,13 @@
             "osmc-symbol": "red:white::MP:red",
             "website": "https://www.pfalz.de/de/pfalz-erleben/wandern/alle-wanderwege/themenwanderwege",
             "operator": "Pfalz.Touristik e.V."
-        },
-        {
-            "id": "france_hiking_foot_routes_line.16863027",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.16863027",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     830699.70331342,
@@ -2558,7 +2577,9 @@
                     830699.70331342,
                     6027468.01366351
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "Le Sentier Vert 6 km",
             "description": "Parcours permanents FFSP Départ et arrivée Restaurant Relais des bains Hagenthal-le-Haut",
             "distance": "6",
@@ -2568,9 +2589,13 @@
             "osmc-symbol": "green:white::➨:green",
             "website": "https://www.ffsp.fr/parcours-permanents/Le-Sentier-Vert.html",
             "operator": "Fédération Francaise des Sports Populaires"
-        },
-        {
-            "id": "france_hiking_foot_routes_line.16904518",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.16904518",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     799209.82386901,
@@ -3260,7 +3285,9 @@
                     799209.82386901,
                     6080420.35941184
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "Sentier découverte la Nature et l'Eau de Wattwiller 4 Km",
             "description": "Parcours permanents FFSP Départ et arrivée L'épicerie des Sources 68700 Wattwiller",
             "distance": "4",
@@ -3270,9 +3297,13 @@
             "osmc-symbol": "red:red::IVV:white",
             "website": "https://www.ffsp.fr/parcours-permanent/watwiller-Sentier-decouverte-la-Nature-et-lEau.html",
             "operator": "Fédération Francaise des Sports Populaires"
-        },
-        {
-            "id": "france_hiking_foot_routes_line.16904467",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.16904467",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     798967.64831679,
@@ -4662,7 +4693,9 @@
                     798967.64831679,
                     6078369.59439759
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "Sentier découverte la Nature et l'Eau de Wattwiller 8 Km",
             "description": "Parcours permanents FFSP Départ et arrivée Auberge Domaine du Hirtz 68700 Wattwiller",
             "distance": "8",
@@ -4672,9 +4705,13 @@
             "osmc-symbol": "green:green::IVV:white",
             "website": "https://www.ffsp.fr/parcours-permanent/watwiller-Sentier-decouverte-la-Nature-et-lEau.html",
             "operator": "Fédération Francaise des Sports Populaires"
-        },
-        {
-            "id": "france_hiking_foot_routes_line.9906998",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.9906998",
+        "geometry": {
+            "type": "MultiLineString",
             "coordinates": [
                 [
                     [
@@ -5378,7 +5415,9 @@
                         5373821.23858931
                     ]
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "La Presqu’ile - Le sentier du littoral",
             "description": "Dans cette ville où tous les chemins mènent à la mer, la création du sentier littoral tient à la fois de l’aménagement et de la protection de l’environnement.",
             "distance": "4.0",
@@ -5388,9 +5427,13 @@
             "osmc-symbol": "blue::blue_bar",
             "website": "https://www.myprovence.fr/document/itineraires-de-randonnees/topo-rando-port-de-bouc-littoral.pdf",
             "operator": "Département des Bouches-du-Rhône"
-        },
-        {
-            "id": "france_hiking_foot_routes_line.16863037",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.16863037",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     831730.61085376,
@@ -6508,7 +6551,9 @@
                     831730.61085376,
                     6027161.10650409
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "Le Sentier Vert 8 km",
             "description": "Parcours permanents FFSP Départ et arrivée Restaurant Relais des bains Hagenthal-le-Haut",
             "distance": "8",
@@ -6518,9 +6563,13 @@
             "osmc-symbol": "green:white::➨:green",
             "website": "https://www.ffsp.fr/parcours-permanents/Le-Sentier-Vert.html",
             "operator": "Fédération Francaise des Sports Populaires"
-        },
-        {
-            "id": "france_hiking_foot_routes_line.15651023",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.15651023",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     782178.88799331,
@@ -7550,7 +7599,9 @@
                     778308.32043038,
                     5988683.85057029
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "Trans Swiss Trail",
             "description": "Étape 3",
             "distance": "12",
@@ -7560,9 +7611,13 @@
             "osmc-symbol": "green:green::2:white",
             "website": "https://www.schweizmobil.ch/fr/wanderland/etappe2.03",
             "operator": "Wanderland Schweiz"
-        },
-        {
-            "id": "france_hiking_foot_routes_line.3286358",
+        }
+    },
+    {
+        "type": "Feature",
+        "hike_id": "france_hiking_foot_routes_line.3286358",
+        "geometry": {
+            "type": "LineString",
             "coordinates": [
                 [
                     882094.20902447,
@@ -8140,7 +8195,9 @@
                     885684.80806806,
                     6283705.18096229
                 ]
-            ],
+            ]
+        },
+        "properties": {
             "name": "Pfälzer Weinsteig - Etappe 11",
             "description": "11. Etappe Pfälzer Weinsteig: Bad Bergzabern - Schweigen-Rechtenbach",
             "distance": "15.8",
@@ -8151,5 +8208,5 @@
             "website": "https://www.pfalz.de/de/pfalz-erleben/wandern/wandermenue-pfalz-die-schoensten-wanderwege/wanderwege-im-wandermenue/fernwanderwege",
             "operator": "Pfalz.Touristik e.V."
         }
-    ]
-}
+    }
+]
