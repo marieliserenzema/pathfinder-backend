@@ -1,6 +1,14 @@
-import { Controller, Get, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Delete,
+  UseGuards,
+  Query,
+} from '@nestjs/common';
 import { HikeService } from './hike.service';
 import { AuthGuard } from '../guard/auth.guard';
+import { PaginationParametersDto } from './dto/pagination-parameters.dto';
 
 @UseGuards(AuthGuard)
 @Controller('hike')
@@ -8,8 +16,8 @@ export class HikeController {
   constructor(private readonly hikeService: HikeService) {}
 
   @Get()
-  public findAll() {
-    return this.hikeService.findAll();
+  public findAll(@Query() paginationParametersDto: PaginationParametersDto) {
+    return this.hikeService.findAll(paginationParametersDto);
   }
 
   @Get(':id')
