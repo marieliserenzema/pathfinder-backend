@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
 import { Model } from 'mongoose';
@@ -16,12 +15,12 @@ export class UserService {
   }
 
   public findAll() {
-    return this.userModel.find().exec();
+    return this.userModel.find({}, { password: 0 }).exec();
   }
 
   public findOne(id: string) {
     try {
-      return this.userModel.findOne({ _id: id }).exec();
+      return this.userModel.findOne({ _id: id }, { password: 0 }).exec();
     } catch {
       throw new NotFoundException();
     }
@@ -36,7 +35,11 @@ export class UserService {
   }
 
   public update(id: string, role: RoleEnum) {
-    return this.userModel.updateOne({ _id: id }, { role: role });
+    return this.userModel.updateOne(
+      { _id: id },
+      { role: role },
+      { password: 0 },
+    );
   }
 
   public async remove(id: string) {
