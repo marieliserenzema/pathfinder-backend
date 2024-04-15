@@ -1,5 +1,5 @@
-#Script python lisant un fichier json d'environ 300mo (non présent sur le git) et en extirpant une quantité d'objets
-#choisi par l'utilisateur sous le format souhaité pour l'app pathfinder
+#Python script reading a json file of about 300mo (not present on the git) and extracting a quantity of objects from it
+#chosen by the user in the desired format for the pathfinder app
 
 import json
 
