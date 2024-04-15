@@ -4,10 +4,12 @@ import {
   Get,
   Param,
   Patch,
+  Req,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { AuthGuard } from '../guard/auth.guard';
+import { AuthenticatedRequest, AuthGuard } from '../guard/auth.guard';
 import { RoleEnum } from '../enum/role.enum';
 
 @UseGuards(AuthGuard)
@@ -18,6 +20,15 @@ export class UserController {
   @Get()
   public findAll() {
     return this.userService.findAll();
+  }
+
+  @Get('me')
+  public me(@Req() req: AuthenticatedRequest) {
+    const payload = req.user;
+    if (!payload?.id) {
+      throw new UnauthorizedException();
+    }
+    return this.userService.findOne(payload?.id);
   }
 
   @Get(':id')

@@ -16,7 +16,7 @@ export class AuthService {
     if (!user?.password || !(await compare(inputPassword, user.password))) {
       throw new UnauthorizedException();
     }
-    const payload = { sub: user._id, username: user.username };
+    const payload = { id: user._id, username: user.username };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
@@ -26,7 +26,7 @@ export class AuthService {
     const cryptedPassword = await hash(regisetDto.password, 10);
     regisetDto = { ...regisetDto, password: cryptedPassword };
     const user = await this.userService.create(regisetDto);
-    const payload = { sub: user._id, username: user.username };
+    const payload = { id: user._id, username: user.username };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
