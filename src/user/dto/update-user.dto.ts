@@ -1,7 +1,7 @@
-import { IsArray, IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class UpdateUserDto {
-  @IsArray()
+  @IsString()
   @IsNotEmpty()
-  favorite: string[];
+  favorite: string;
 }

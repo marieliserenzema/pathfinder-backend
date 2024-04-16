@@ -39,12 +39,24 @@ export class UserService {
     }
   }
 
-  public update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userModel.findByIdAndUpdate(
-      { _id: id },
-      { $addToSet: { favorite: { $each: updateUserDto.favorite } } },
-      { password: 0 },
-    );
+  public async update(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.userModel.findOne({ _id: id }).exec();
+    if (user?.favorite.includes(updateUserDto.favorite)) {
+      return this.userModel
+        .findByIdAndUpdate(
+          { _id: id },
+          { $pull: { favorite: updateUserDto.favorite } },
+          { password: 0 },
+        )
+        .exec();
+    }
+    return this.userModel
+      .findByIdAndUpdate(
+        { _id: id },
+        { $addToSet: { favorite: updateUserDto.favorite } },
+        { password: 0 },
+      )
+      .exec();
   }
 
   public async findFavorite(id: string) {
