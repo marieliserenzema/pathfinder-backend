@@ -62,13 +62,13 @@ export class UserController {
   @Patch('favorite')
   public updateFavorite(
     @Req() req: AuthenticatedRequest,
-    @Body() updateUserDto: UpdateFavoriteDto,
+    @Body() updateFavoriteDto: UpdateFavoriteDto,
   ) {
     const payload = req.user;
     if (!payload?.id) {
       throw new UnauthorizedException();
     }
-    return this.userService.updateFavorite(payload.id, updateUserDto);
+    return this.userService.updateFavorite(payload.id, updateFavoriteDto);
   }
 
   @Delete(':id')

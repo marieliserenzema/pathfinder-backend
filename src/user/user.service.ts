@@ -41,13 +41,15 @@ export class UserService {
   }
 
   public async updateUser(id: string, updateUserDto: UpdateUserDto) {
-    const cryptedPassword = await hash(updateUserDto.password, 10);
+    if (updateUserDto.password) {
+      updateUserDto.password = await hash(updateUserDto.password, 10);
+    }
     return this.userModel
       .findOneAndUpdate(
         { _id: id },
         {
           $set: {
-            password: cryptedPassword,
+            password: updateUserDto.password,
             username: updateUserDto.username,
             email: updateUserDto.email,
           },
