@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common';
 import { HikeService } from './hike.service';
 import { AuthGuard } from '../guard/auth.guard';
-import { PaginationParametersDto } from './dto/pagination-parameters.dto';
+import { FilterParametersDto } from './dto/filter-parameters.dto';
 
 @UseGuards(AuthGuard)
 @Controller('hike')
@@ -16,8 +16,8 @@ export class HikeController {
   constructor(private readonly hikeService: HikeService) {}
 
   @Get()
-  public findAll(@Query() paginationParametersDto: PaginationParametersDto) {
-    return this.hikeService.findAll(paginationParametersDto);
+  public findAll(@Query() filterParametersDto: FilterParametersDto) {
+    return this.hikeService.findAll(filterParametersDto);
   }
 
   @Get(':id')
