@@ -13,6 +13,9 @@ import { UserService } from './user.service';
 import { AuthenticatedRequest, AuthGuard } from '../guard/auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UpdateFavoriteDto } from './dto/update-favorite.dto';
+import { RoleEnum } from '../enum/role.enum';
+import { Roles } from '../decorator/role.decorator';
+import { RoleGuard } from '../guard/role.guard';
 
 @UseGuards(AuthGuard)
 @Controller('user')
@@ -71,6 +74,8 @@ export class UserController {
     return this.userService.updateFavorite(payload.id, updateFavoriteDto);
   }
 
+  @Roles([RoleEnum.ADMIN])
+  @UseGuards(RoleGuard)
   @Delete(':id')
   public remove(@Param('id') id: string) {
     return this.userService.remove(id);
