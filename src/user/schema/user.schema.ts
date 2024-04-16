@@ -18,7 +18,6 @@ export class User {
   @Prop({ required: true })
   role: RoleEnum;
 
-  //todo: add relation to hike schema later
   @Prop()
   favorite: string[];
 }

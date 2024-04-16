@@ -3,11 +3,16 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { RegisterDto } from '../auth/auth/dto/register.dto';
-import { RoleEnum } from '../enum/role.enum';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { Hike } from '../hike/schema/hike.schema';
+import mongoose from 'mongoose';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<User>,
+    @InjectModel(Hike.name) private hikeModel: Model<Hike>,
+  ) {}
 
   public create(registerDto: RegisterDto) {
     const createdUser = new this.userModel(registerDto);
@@ -34,12 +39,21 @@ export class UserService {
     }
   }
 
-  public update(id: string, role: RoleEnum) {
-    return this.userModel.updateOne(
+  public update(id: string, updateUserDto: UpdateUserDto) {
+    return this.userModel.findByIdAndUpdate(
       { _id: id },
-      { role: role },
+      { $addToSet: { favorite: { $each: updateUserDto.favorite } } },
       { password: 0 },
     );
+  }
+
+  public async findFavorite(id: string) {
+    const user = await this.userModel.findOne({ _id: id }).exec();
+    if (!user?.favorite) {
+      throw new NotFoundException();
+    }
+
+    return this.hikeModel.find({ _id: { $in: user.favorite } }).exec();
   }
 
   public async remove(id: string) {

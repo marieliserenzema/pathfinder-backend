@@ -10,5 +10,6 @@ import { Hike, HikeSchema } from './schema/hike.schema';
   ],
   controllers: [HikeController],
   providers: [HikeService],
+  exports: [HikeService],
 })
 export class HikeModule {}

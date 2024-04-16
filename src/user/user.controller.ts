@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -10,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { AuthenticatedRequest, AuthGuard } from '../guard/auth.guard';
-import { RoleEnum } from '../enum/role.enum';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @UseGuards(AuthGuard)
 @Controller('user')
@@ -31,14 +32,30 @@ export class UserController {
     return this.userService.findOne(payload?.id);
   }
 
+  @Get('favorite')
+  public favorite(@Req() req: AuthenticatedRequest) {
+    const payload = req.user;
+    if (!payload?.id) {
+      throw new UnauthorizedException();
+    }
+    return this.userService.findFavorite(payload.id);
+  }
+
   @Get(':id')
   public findOne(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 
-  @Patch(':id')
-  public update(@Param('id') id: string) {
-    return this.userService.update(id, RoleEnum.USER);
+  @Patch('favorite')
+  public updateFavorite(
+    @Req() req: AuthenticatedRequest,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    const payload = req.user;
+    if (!payload?.id) {
+      throw new UnauthorizedException();
+    }
+    return this.userService.update(payload.id, updateUserDto);
   }
 
   @Delete(':id')
