@@ -12,6 +12,7 @@ import {
 import { UserService } from './user.service';
 import { AuthenticatedRequest, AuthGuard } from '../guard/auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 
 @UseGuards(AuthGuard)
 @Controller('user')
@@ -46,8 +47,8 @@ export class UserController {
     return this.userService.findOne(id);
   }
 
-  @Patch('favorite')
-  public updateFavorite(
+  @Patch()
+  public updateUser(
     @Req() req: AuthenticatedRequest,
     @Body() updateUserDto: UpdateUserDto,
   ) {
@@ -55,7 +56,19 @@ export class UserController {
     if (!payload?.id) {
       throw new UnauthorizedException();
     }
-    return this.userService.update(payload.id, updateUserDto);
+    return this.userService.updateUser(payload.id, updateUserDto);
+  }
+
+  @Patch('favorite')
+  public updateFavorite(
+    @Req() req: AuthenticatedRequest,
+    @Body() updateUserDto: UpdateFavoriteDto,
+  ) {
+    const payload = req.user;
+    if (!payload?.id) {
+      throw new UnauthorizedException();
+    }
+    return this.userService.updateFavorite(payload.id, updateUserDto);
   }
 
   @Delete(':id')

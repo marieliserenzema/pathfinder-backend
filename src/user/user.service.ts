@@ -3,9 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schema/user.schema';
 import { Model } from 'mongoose';
 import { RegisterDto } from '../auth/auth/dto/register.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { Hike } from '../hike/schema/hike.schema';
-import mongoose from 'mongoose';
+import { UpdateFavoriteDto } from './dto/update-favorite.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { hash } from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -39,21 +40,41 @@ export class UserService {
     }
   }
 
-  public async update(id: string, updateUserDto: UpdateUserDto) {
+  public async updateUser(id: string, updateUserDto: UpdateUserDto) {
+    const cryptedPassword = await hash(updateUserDto.password, 10);
+    return this.userModel
+      .findOneAndUpdate(
+        { _id: id },
+        {
+          $set: {
+            password: cryptedPassword,
+            username: updateUserDto.username,
+            email: updateUserDto.email,
+          },
+        },
+        { new: true },
+      )
+      .exec();
+  }
+
+  public async updateFavorite(
+    id: string,
+    updateFavoriteDto: UpdateFavoriteDto,
+  ) {
     const user = await this.userModel.findOne({ _id: id }).exec();
-    if (user?.favorite.includes(updateUserDto.favorite)) {
+    if (user?.favorite.includes(updateFavoriteDto.favorite)) {
       return this.userModel
         .findByIdAndUpdate(
           { _id: id },
-          { $pull: { favorite: updateUserDto.favorite } },
-          { password: 0 },
+          { $pull: { favorite: updateFavoriteDto.favorite } },
+          { password: 0, new: true },
         )
         .exec();
     }
     return this.userModel
       .findByIdAndUpdate(
         { _id: id },
-        { $addToSet: { favorite: updateUserDto.favorite } },
+        { $addToSet: { favorite: updateFavoriteDto.favorite } },
         { password: 0 },
       )
       .exec();
