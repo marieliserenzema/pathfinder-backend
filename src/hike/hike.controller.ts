@@ -11,7 +11,7 @@ import { AuthGuard } from '../guard/auth.guard';
 import { FilterParametersDto } from './dto/filter-parameters.dto';
 
 @UseGuards(AuthGuard)
-@Controller('hike')
+@Controller('hikes')
 export class HikeController {
   constructor(private readonly hikeService: HikeService) {}
 

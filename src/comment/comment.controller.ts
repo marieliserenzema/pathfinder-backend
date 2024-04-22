@@ -14,7 +14,7 @@ import { Roles } from '../decorator/role.decorator';
 import { RoleEnum } from '../enum/role.enum';
 import { RoleGuard } from '../guard/role.guard';
 
-@Controller('comment')
+@Controller('comments')
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
