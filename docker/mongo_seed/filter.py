@@ -34,7 +34,8 @@ for feature in json_data['features']:
             	"osmc-symbol": feature['properties']['osmc-symbol'],
             	"website": feature['properties']['website'],
             	"operator": feature['properties']['operator']
-            }
+            },
+           "bbox": feature['bbox']
         }
 
         filtered_hikes.append(filtered_hike)
@@ -45,4 +46,3 @@ with open('filtered_hikes.json', 'w', encoding='utf-8') as w:
     json.dump(filtered_hikes, w, ensure_ascii=False, indent=4)
 
 print(f"{len(filtered_hikes)} objets filtrés.")
-
