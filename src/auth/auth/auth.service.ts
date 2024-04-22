@@ -3,6 +3,8 @@ import { UserService } from '../../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterDto } from './dto/register.dto';
 import { compare, hash } from 'bcrypt';
+import { SignInDto } from './dto/signIn.dto';
+import { RoleEnum } from '../../enum/role.enum';
 
 @Injectable()
 export class AuthService {
@@ -11,9 +13,15 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  public async signIn(email: string, inputPassword: string) {
-    const user = await this.userService.findOneByEmail(email);
-    if (!user?.password || !(await compare(inputPassword, user.password))) {
+  public async signIn(signInDto: SignInDto, verifyIsAdmin: boolean) {
+    const user = await this.userService.findOneByEmail(signInDto.email);
+    if (
+      !user?.password ||
+      !(await compare(signInDto.password, user.password))
+    ) {
+      throw new UnauthorizedException();
+    }
+    if (verifyIsAdmin && user.role !== RoleEnum.ADMIN) {
       throw new UnauthorizedException();
     }
     const payload = { id: user._id, username: user.username };

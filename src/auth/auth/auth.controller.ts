@@ -7,15 +7,18 @@ import { RegisterDto } from './dto/register.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @HttpCode(HttpStatus.OK)
   @Post('login')
   public signIn(@Body() signInDto: SignInDto) {
-    return this.authService.signIn(signInDto.email, signInDto.password);
+    return this.authService.signIn(signInDto, false);
   }
 
-  @HttpCode(HttpStatus.OK)
   @Post('register')
   public register(@Body() registerDto: RegisterDto) {
     return this.authService.register(registerDto);
+  }
+
+  @Post('admin')
+  public signInAsAdmin(@Body() signInDto: SignInDto) {
+    return this.authService.signIn(signInDto, true);
   }
 }
