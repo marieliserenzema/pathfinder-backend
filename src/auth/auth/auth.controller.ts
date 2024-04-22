@@ -9,7 +9,7 @@ export class AuthController {
 
   @Post('login')
   public signIn(@Body() signInDto: SignInDto) {
-    return this.authService.signIn(signInDto, false);
+    return this.authService.signIn(signInDto);
   }
 
   @Post('register')
@@ -19,6 +19,6 @@ export class AuthController {
 
   @Post('admin')
   public signInAsAdmin(@Body() signInDto: SignInDto) {
-    return this.authService.signIn(signInDto, true);
+    return this.authService.signInAsAdmin(signInDto);
   }
 }

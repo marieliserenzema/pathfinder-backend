@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { UserService } from '../../user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterDto } from './dto/register.dto';
@@ -13,15 +17,12 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  public async signIn(signInDto: SignInDto, verifyIsAdmin: boolean) {
+  public async signIn(signInDto: SignInDto) {
     const user = await this.userService.findOneByEmail(signInDto.email);
     if (
       !user?.password ||
       !(await compare(signInDto.password, user.password))
     ) {
-      throw new UnauthorizedException();
-    }
-    if (verifyIsAdmin && user.role !== RoleEnum.ADMIN) {
       throw new UnauthorizedException();
     }
     const payload = { id: user._id, username: user.username };
@@ -34,6 +35,21 @@ export class AuthService {
     const cryptedPassword = await hash(regisetDto.password, 10);
     regisetDto = { ...regisetDto, password: cryptedPassword };
     const user = await this.userService.create(regisetDto);
+    const payload = { id: user._id, username: user.username };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
+  }
+
+  public async signInAsAdmin(signInDto: SignInDto) {
+    const user = await this.userService.findOneByEmail(signInDto.email);
+    console.log('allo ??', user);
+    if (!user) {
+      throw new NotFoundException();
+    }
+    if (user.role !== RoleEnum.ADMIN) {
+      throw new UnauthorizedException();
+    }
     const payload = { id: user._id, username: user.username };
     return {
       access_token: await this.jwtService.signAsync(payload),
