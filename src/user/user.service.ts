@@ -7,6 +7,7 @@ import { Hike } from '../hike/schema/hike.schema';
 import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { hash } from 'bcrypt';
+import { PaginationParametersDto } from '../hike/dto/pagination-parameters.dto';
 
 @Injectable()
 export class UserService {
@@ -20,8 +21,26 @@ export class UserService {
     return createdUser.save();
   }
 
-  public findAll() {
-    return this.userModel.find({}, { password: 0 }).exec();
+  public async findAll(paginationParametersDto: PaginationParametersDto) {
+    const count = await this.userModel.countDocuments().exec();
+    const total_page =
+      Math.floor((count - 1) / paginationParametersDto.limit) + 1;
+    const current_page = Math.ceil(
+      (Number(paginationParametersDto.skip) + 1) /
+        paginationParametersDto.limit,
+    );
+    const data = await this.userModel
+      .find({}, { password: 0 })
+      .limit(paginationParametersDto.limit)
+      .skip(paginationParametersDto.skip)
+      .exec();
+    return {
+      items: data,
+      total_page: total_page,
+      count: count,
+      current_page: current_page,
+      hasNextPage: current_page < total_page,
+    };
   }
 
   public findOne(id: string) {

@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Patch,
+  Query,
   Req,
   UnauthorizedException,
   UseGuards,
@@ -16,6 +17,7 @@ import { UpdateFavoriteDto } from './dto/update-favorite.dto';
 import { RoleEnum } from '../enum/role.enum';
 import { Roles } from '../decorator/role.decorator';
 import { RoleGuard } from '../guard/role.guard';
+import { PaginationParametersDto } from '../hike/dto/pagination-parameters.dto';
 
 @UseGuards(AuthGuard)
 @Controller('users')
@@ -23,8 +25,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  public findAll() {
-    return this.userService.findAll();
+  public findAll(@Query() paginationParametersDto: PaginationParametersDto) {
+    return this.userService.findAll(paginationParametersDto);
   }
 
   @Get('me')

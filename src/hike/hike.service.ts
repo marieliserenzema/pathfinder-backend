@@ -29,7 +29,7 @@ export class HikeService {
       .skip(filterParametersDto.skip)
       .exec();
     return {
-      data: data,
+      items: data,
       total_page: total_page,
       count: count,
       current_page: current_page,

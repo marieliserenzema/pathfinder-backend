@@ -43,7 +43,6 @@ export class AuthService {
 
   public async signInAsAdmin(signInDto: SignInDto) {
     const user = await this.userService.findOneByEmail(signInDto.email);
-    console.log('allo ??', user);
     if (!user) {
       throw new NotFoundException();
     }
