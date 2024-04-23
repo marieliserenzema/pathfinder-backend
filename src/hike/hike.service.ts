@@ -19,8 +19,8 @@ export class HikeService {
       };
     }
     const count = await this.hikeModel.countDocuments(filter).exec();
-    const total_page = Math.floor((count - 1) / filterParametersDto.limit) + 1;
-    const current_page = Math.ceil(
+    const totalPage = Math.floor((count - 1) / filterParametersDto.limit) + 1;
+    const currentPage = Math.ceil(
       (Number(filterParametersDto.skip) + 1) / filterParametersDto.limit,
     );
     const data = await this.hikeModel
@@ -30,10 +30,10 @@ export class HikeService {
       .exec();
     return {
       items: data,
-      total_page: total_page,
+      totalPage: totalPage,
       count: count,
-      current_page: current_page,
-      hasNextPage: current_page < total_page,
+      currentPage: currentPage,
+      hasNextPage: currentPage < totalPage,
     };
   }
 
