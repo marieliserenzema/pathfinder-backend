@@ -36,6 +36,9 @@ export class Hike {
 
   @Prop({ required: true })
   bbox: [number, number, number, number];
+
+  @Prop({ required: true })
+  stars: number;
 }
 
 export const HikeSchema = SchemaFactory.createForClass(Hike);

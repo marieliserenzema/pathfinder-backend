@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth/auth.module';
 import { CommentModule } from './comment/comment.module';
 import { HikeModule } from './hike/hike.module';
+import { AlertModule } from './alert/alert.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { HikeModule } from './hike/hike.module';
     AuthModule,
     CommentModule,
     HikeModule,
+    AlertModule,
   ],
   controllers: [AppController],
   providers: [AppService],
