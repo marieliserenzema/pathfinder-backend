@@ -1,6 +1,3 @@
-#Python script reading a json file of about 300mo (not present on the git) and extracting a quantity of objects from it
-#chosen by the user in the desired format for the pathfinder app
-
 import json
 
 print("En cours...")
@@ -15,11 +12,12 @@ for feature in json_data['features']:
        feature['properties']['distance'] is not None and feature['properties']['to'] is not None and \
        feature['properties']['from'] is not None and feature['properties']['symbol'] is not None and \
        feature['properties']['osmc-symbol'] is not None and feature['properties']['website'] is not None and \
-       feature['properties']['operator'] is not None:
+       feature['properties']['operator'] is not None and feature['geometry']['type'] == "LineString":
 
         filtered_hike = {
             "type": feature['type'],
             "hike_id": feature['id'],
+            "stars": 0,
             "geometry": {
             	"type": feature['geometry']['type'],
             	"coordinates": feature['geometry']['coordinates']
@@ -46,3 +44,4 @@ with open('filtered_hikes.json', 'w', encoding='utf-8') as w:
     json.dump(filtered_hikes, w, ensure_ascii=False, indent=4)
 
 print(f"{len(filtered_hikes)} objets filtrés.")
+
