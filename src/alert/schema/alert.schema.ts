@@ -19,7 +19,7 @@ export class Alert {
   @Prop({ required: true })
   hikeId: string;
 
-  @Prop({ required: true })
+  @Prop({ type: {}, required: true })
   coordinate: LatLng;
 
   @Prop({ required: false })
