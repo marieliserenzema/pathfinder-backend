@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Hike } from './schema/hike.schema';
 import { FilterParametersDto } from './dto/filter-parameters.dto';
+import { UpdateStarsDto } from './dto/update-stars.dto';
 
 @Injectable()
 export class HikeService {
@@ -37,11 +38,29 @@ export class HikeService {
     };
   }
 
-  findOne(id: string) {
+  public findOne(id: string) {
     return this.hikeModel.findOne({ _id: id }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} hike`;
+  public async updateStars(id: string, updateStarsDto: UpdateStarsDto) {
+    const hike = await this.hikeModel.findOne({ _id: id }).exec();
+
+    if (!hike) {
+      throw new NotFoundException();
+    }
+
+    const divider = updateStarsDto.stars + hike.stars * hike.starIndexes;
+
+    const dividende = hike.starIndexes + 1;
+
+    const newStarsValue = divider / dividende;
+
+    return this.hikeModel
+      .findByIdAndUpdate(
+        { _id: id },
+        { $inc: { starIndexes: 1 }, $set: { stars: newStarsValue } },
+        { new: true },
+      )
+      .exec();
   }
 }
