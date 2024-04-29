@@ -20,6 +20,10 @@ export class AlertService {
     return this.alertModel.findOne({ _id: id }).exec();
   }
 
+  public findHikeAlerts(hikeId: string) {
+    return this.alertModel.find({ hikeId: hikeId }).exec();
+  }
+
   public remove(id: string) {
     return this.alertModel.findOneAndDelete({ _id: id }).exec();
   }

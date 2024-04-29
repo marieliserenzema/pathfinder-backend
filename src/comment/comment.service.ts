@@ -12,6 +12,7 @@ export class CommentService {
 
   public create(createCommentDto: CreateCommentDto) {
     const createdComment = new this.commentModel(createCommentDto);
+    createdComment.date = new Date();
     return createdComment.save();
   }
 

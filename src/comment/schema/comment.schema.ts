@@ -8,6 +8,9 @@ export class Comment {
   @Prop({ required: true })
   text: string;
 
+  @Prop({ required: true })
+  date: Date;
+
   //todo: add relation ?
   @Prop({ required: true })
   hikeId: string;
