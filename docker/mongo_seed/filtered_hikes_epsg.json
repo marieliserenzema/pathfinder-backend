@@ -3,6 +3,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.9903858",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -846,6 +847,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.16892293",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -1713,6 +1715,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.15820489",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -1972,6 +1975,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.16863027",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -2623,6 +2627,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.16904518",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -3338,6 +3343,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.16904467",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -4753,6 +4759,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.16863037",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -5896,6 +5903,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.15651023",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -6951,6 +6959,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.3286358",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
@@ -7554,6 +7563,7 @@
         "type": "Feature",
         "hike_id": "france_hiking_foot_routes_line.16862953",
         "stars": 0,
+        "starIndexes": 0,
         "geometry": {
             "type": "LineString",
             "coordinates": [
