@@ -16,7 +16,7 @@ export class AlertController {
     return this.alertService.findAll();
   }
 
-  @Get('hikes/:id')
+  @Get('hike/:id')
   public findHikeAlerts(@Param('id') id: string) {
     return this.alertService.findHikeAlerts(id);
   }

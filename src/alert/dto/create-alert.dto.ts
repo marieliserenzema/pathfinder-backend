@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
 import { LatLng } from '../schema/alert.schema';
 
 export class CreateAlertDto {
@@ -14,6 +14,7 @@ export class CreateAlertDto {
   @IsNotEmpty()
   hikeId: string;
 
+  @ValidateNested({ each: true })
   @IsNotEmpty()
   coordinate: LatLng;
 

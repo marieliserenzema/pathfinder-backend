@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAlertDto } from './dto/create-alert.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Alert } from './schema/alert.schema';
+import { Alert, LatLng } from './schema/alert.schema';
 
 @Injectable()
 export class AlertService {
@@ -20,11 +20,43 @@ export class AlertService {
     return this.alertModel.findOne({ _id: id }).exec();
   }
 
-  public findHikeAlerts(hikeId: string) {
-    return this.alertModel.find({ hikeId: hikeId }).exec();
+  public async findHikeAlerts(hikeId: string) {
+    const alerts = await this.alertModel.find({ hikeId: hikeId }).exec();
+
+    if (alerts.length <= 0) {
+      throw new NotFoundException();
+    }
+
+    const finalAlerts: Alert[] = [];
+    alerts.map((alert: Alert) => {
+      let shouldPlace = true;
+      for (const finalAlert of finalAlerts) {
+        const dist = this.calculateDistanceBetween(
+          alert.coordinate,
+          finalAlert.coordinate,
+        );
+
+        if (dist < 1) {
+          shouldPlace = false;
+          break;
+        }
+      }
+
+      if (shouldPlace) {
+        finalAlerts.push(alert);
+      }
+    });
+    return finalAlerts;
   }
 
   public remove(id: string) {
     return this.alertModel.findOneAndDelete({ _id: id }).exec();
+  }
+
+  public calculateDistanceBetween(coord1: LatLng, coord2: LatLng) {
+    return Math.sqrt(
+      Math.pow(coord2.longitude - coord1.longitude, 2) +
+        Math.pow(coord2.latitude - coord1.latitude, 2),
+    );
   }
 }
