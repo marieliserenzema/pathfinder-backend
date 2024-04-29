@@ -39,6 +39,9 @@ export class Hike {
 
   @Prop({ required: true })
   stars: number;
+
+  @Prop({ required: true })
+  starIndexes: number;
 }
 
 export const HikeSchema = SchemaFactory.createForClass(Hike);

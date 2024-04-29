@@ -18,6 +18,7 @@ for feature in json_data['features']:
             "type": feature['type'],
             "hike_id": feature['id'],
             "stars": 0,
+            "starIndexes": 0,
             "geometry": {
             	"type": feature['geometry']['type'],
             	"coordinates": feature['geometry']['coordinates']
