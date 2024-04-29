@@ -28,6 +28,11 @@ export class CommentController {
     return this.commentService.findAll();
   }
 
+  @Get('hike/:id')
+  public findHikeComments(@Param('id') id: string) {
+    return this.commentService.findHikeComments(id);
+  }
+
   @Get(':id')
   public findOne(@Param('id') id: string) {
     return this.commentService.findOne(id);

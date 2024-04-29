@@ -11,18 +11,32 @@ export class CommentService {
   ) {}
 
   public create(createCommentDto: CreateCommentDto) {
-    const createdComment = new this.commentModel(createCommentDto);
-    createdComment.date = new Date();
+    const createdComment = new this.commentModel({
+      text: createCommentDto.text,
+      date: new Date(),
+      user: createCommentDto.userId,
+      hikeId: createCommentDto.hikeId,
+    });
     return createdComment.save();
   }
 
   public findAll() {
-    return this.commentModel.find().exec();
+    return this.commentModel.find().populate('user').exec();
+  }
+
+  public findHikeComments(hikeId: string) {
+    return this.commentModel
+      .find({ hikeId: hikeId })
+      .populate('user', '_id username')
+      .exec();
   }
 
   public findOne(id: string) {
     try {
-      return this.commentModel.findOne({ _id: id }).exec();
+      return this.commentModel
+        .findOne({ _id: id })
+        .populate('user', '_id username')
+        .exec();
     } catch {
       throw new NotFoundException();
     }
