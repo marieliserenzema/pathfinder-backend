@@ -16,7 +16,6 @@ export class Comment {
   @Prop({ required: true })
   hikeId: string;
 
-  //todo: add relation ?
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User' })
   user: User;
 }
