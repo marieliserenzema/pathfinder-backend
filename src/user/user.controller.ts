@@ -53,7 +53,7 @@ export class UserController {
   }
 
   @Patch()
-  public updateUser(
+  public updateSelf(
     @Req() req: AuthenticatedRequest,
     @Body() updateUserDto: UpdateUserDto,
   ) {
@@ -74,6 +74,16 @@ export class UserController {
       throw new UnauthorizedException();
     }
     return this.userService.updateFavorite(payload.id, updateFavoriteDto);
+  }
+
+  @Roles([RoleEnum.ADMIN])
+  @UseGuards(RoleGuard)
+  @Patch(':id')
+  public updateUser(
+    @Param('id') id: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    return this.userService.updateUser(id, updateUserDto);
   }
 
   @Roles([RoleEnum.ADMIN])

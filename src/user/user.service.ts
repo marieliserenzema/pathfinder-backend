@@ -71,6 +71,7 @@ export class UserService {
             password: updateUserDto.password,
             username: updateUserDto.username,
             email: updateUserDto.email,
+            role: updateUserDto.selectedRole,
           },
         },
         { new: true },
