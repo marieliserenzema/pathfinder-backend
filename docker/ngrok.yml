@@ -1,0 +1,7 @@
+version: 2
+authtoken: 2RwDVRtcSNIts9A4BjiuUFL7rjf_kuaBmGigt1tww3speCeF
+tunnels:
+  gorilla-honest-gull:
+    addr: 3000
+    proto: http
+    hostname: gorilla-honest-gull.ngrok-free.app
