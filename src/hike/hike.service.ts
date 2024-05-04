@@ -63,4 +63,8 @@ export class HikeService {
       )
       .exec();
   }
+
+  public async remove(id: string) {
+    await this.hikeModel.findOneAndDelete({ _id: id }).exec();
+  }
 }
