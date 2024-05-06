@@ -1,4 +1,9 @@
-import { IsNotEmpty, IsString, ValidateNested } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import { LatLng } from '../schema/alert.schema';
 
 export class CreateAlertDto {
@@ -19,6 +24,6 @@ export class CreateAlertDto {
   coordinate: LatLng;
 
   @IsString()
-  @IsNotEmpty()
-  photo: string;
+  @IsOptional()
+  photo?: string;
 }
