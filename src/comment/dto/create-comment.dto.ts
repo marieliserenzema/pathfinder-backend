@@ -8,8 +8,4 @@ export class CreateCommentDto {
   @IsNotEmpty()
   @IsString()
   hikeId: string;
-
-  @IsNotEmpty()
-  @IsString()
-  userId: string;
 }

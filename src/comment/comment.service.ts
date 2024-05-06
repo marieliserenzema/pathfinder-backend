@@ -10,11 +10,11 @@ export class CommentService {
     @InjectModel(Comment.name) private commentModel: Model<Comment>,
   ) {}
 
-  public async create(createCommentDto: CreateCommentDto) {
+  public async create(userId: string, createCommentDto: CreateCommentDto) {
     const comment = await this.commentModel.create({
       text: createCommentDto.text,
       date: new Date(),
-      user: createCommentDto.userId,
+      user: userId,
       hikeId: createCommentDto.hikeId,
     });
     return comment.populate('user');
