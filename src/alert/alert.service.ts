@@ -36,7 +36,7 @@ export class AlertService {
           finalAlert.coordinate,
         );
 
-        if (dist < 1) {
+        if (dist < 0.0009009) {
           shouldPlace = false;
           break;
         }
