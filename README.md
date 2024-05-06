@@ -1,73 +1,75 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# PATHFINDER
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Ce répo contient le backend de l'application PathFinder et aussi les fichiers nécessaires à l'initialisation du docker contenant MongoDB.
+Il est construit autour de NestJS.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Prérequis
 
-## Description
+Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js
+- npm (ou yarn)
 
 ## Installation
 
-```bash
-$ npm install
+1. Clonez ce dépôt sur votre machine locale :
+
+```
+git clone https://github.com/marieliserenzema/pathfinder-backend
 ```
 
-## Running the app
+2. Accédez au répertoire du projet :
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+cd pathfinder-backend
 ```
 
-## Test
+3. Installez les dépendances :
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```
+npm install
 ```
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Démarrage de l'application
 
-## Stay in touch
+Vous pouvez démarrer le server en exécutant la commande suivante :
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```
+npm run start
+```
 
-## License
+## DOCKER
 
-Nest is [MIT licensed](LICENSE).
+Rien de compliqué pour le lancer grâce au docker-compose :
+
+Si ce n'est pas encore fait :
+```
+cd docker/
+```
+
+puis
+
+```
+docker compose up
+```
+
+Si vous souhaitez le couper : 
+
+```
+docker compose down
+```
+
+Pour un reset complet, faites ce combo :
+
+```
+docker compose down --volumes
+docker compose up --build
+```
+
+Les autres fichiers compris dans "mongo_seed" servent à initialiser le mongo avec des données immédiates à l'aide du Dockerfile.
+"admin.json" pour créer un admin utilisable dans Pathfinder-frontend-website.  
+Les autres pour nourrir le mongo des données de randonnées que l'on filtre d'un json volumineux ("france_hiking_foot_routes_line.json" dans le serveur ynov).  
+Le filtre est réalisé grâce à "filter.py" puis nous modifions les coordonnées vers un format lisible avec "epsgTransformer.py".
+
+
